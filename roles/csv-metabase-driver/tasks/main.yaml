@@ -1,8 +1,4 @@
 ---
- - name: Prepare environment
-   include_role: 
-    name: ../devenv-clojure/roles/common
-
  - name: Create repository dir
    file:
     path: ~/repository
@@ -18,6 +14,7 @@
    git:
     repo: https://github.com/metabase/metabase.git
     dest: ~/repository/metabase
+    version: v0.40.1
 
  - name: Create a symbolic link
    file:
