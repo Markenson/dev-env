@@ -3,9 +3,16 @@ Scripts to build development environments
 
 # To build csv-metabase-driver
 
-Run script against 192.168.3.124 machine with vagrant user:
+Clone this repo
 
 ```
+git clone https://github.com/Markenson/dev-env.git
+```
+
+Run script. Ex: runnning against 192.168.3.124 machine with vagrant user:
+
+```
+cd ./dev-env
 ansible-playbook csv-metabase-driver.yaml -i "192.168.3.124," -u vagrant -kbK
 ```
 
