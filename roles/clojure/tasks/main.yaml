@@ -1,0 +1,21 @@
+---
+ - name: Install java
+   apt:
+    name: openjdk-11-jdk
+    state: present
+
+ - name: Create download dir
+   file:
+    path: ~/downloads
+    state: directory
+    mode: '0777'
+
+ - name: Download leiningen
+   get_url:
+    url: https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
+    dest: /bin/lein
+    mode: '0777'
+
+ - name: Run lein
+   command: "/bin/lein"
+

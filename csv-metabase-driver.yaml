@@ -1,0 +1,7 @@
+---
+- name: Configure CSV Metabase Driver Environment
+  hosts: all
+  roles:
+   - clojure
+   - csv-metabase-driver
+

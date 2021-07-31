@@ -1,0 +1,35 @@
+---
+ - name: Prepare environment
+   include_role: 
+    name: ../devenv-clojure/roles/common
+
+ - name: Create repository dir
+   file:
+    path: ~/repository
+    state: directory
+    mode: '0777'
+
+ - name: Clone driver repository
+   git:
+    repo: https://github.com/Markenson/csv-metabase-driver.git
+    dest: ~/repository/csv-metabase-driver   
+ 
+ - name: Clone metabase repository
+   git:
+    repo: https://github.com/metabase/metabase.git
+    dest: ~/repository/metabase
+
+ - name: Create a symbolic link
+   file:
+    src: ~/repository/csv-metabase-driver/csv
+    dest: ~/repository/metabase/modules/drivers/csv
+    state: link
+
+ - name: Go to metabse folder and build it
+   shell: cd /root/repository/metabase && lein install-for-building-drivers
+
+ - name: Go to driver folder and build it
+   shell: cd /root/repository/metabase/modules/drivers/csv && LEIN_SNAPSHOTS_IN_RELEASE=true lein uberjar
+
+
+
